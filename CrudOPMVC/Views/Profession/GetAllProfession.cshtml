@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CrudOPMVC.Models.ProfessionModel>
+@{
+    ViewBag.Title = "GetAllProfession";
+}
+
+<hr />
+
+<p>
+    @Html.ActionLink("Add New Profession", "AddProfession", "Profession", new { @class = "btn btn-outline-info" })
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Profession)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>Manage</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.ProfessionID)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profession)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID } , new { @class = "btn btn-outline-info" }) &nbsp;
+                @Html.ActionLink("Delete", "DeleteProfession", new { id = item.ProfessionID }, new { onclick = "return confirm('Are sure wants to delete?');" , @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+
+    }
+
+</table>
+

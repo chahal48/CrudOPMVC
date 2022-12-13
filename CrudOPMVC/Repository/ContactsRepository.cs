@@ -21,55 +21,76 @@ namespace CrudOPMVC.Repository
             con = new SqlConnection(constr);
         }
 
-        //private bool Add()
-        //{
-        //    try
-        //    {
-        //        SqlCommand cmd = new SqlCommand("AddContact");
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.AddWithValue("@ProfessionID", Convert.ToInt32(DropDownList1.SelectedValue));
-        //        cmd.Parameters.AddWithValue("@fName", fName.Text.Trim());
-        //        cmd.Parameters.AddWithValue("@lName", LName.Text.Trim());
-        //        cmd.Parameters.AddWithValue("@emailAddr", Email.Text.Trim());
-        //        cmd.Parameters.AddWithValue("@Company", Company.Text.Trim());
-        //        cmd.Parameters.AddWithValue("@Category", Convert.ToInt32(DropDownCat.SelectedValue));
+        #region CommonFetchQuery
+        public DataTable FetchQuery(SqlCommand cmd)
+        {
+            try
+            {
+                connection();
 
-        //        return commonMethod.Query(cmd);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        lblError.Text = "Invalid cred... " + Convert.ToString(ex.Message);
-        //        lblError.Visible = true;
-        //        return false;
-        //    }
-        //}
+                // Required Open Connection
+                if (con.State == ConnectionState.Closed)
+                {
+                    con.Open();
+                }
 
+                //Execution Block start
+                cmd.Connection = con;
+                SqlDataAdapter sda = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                //Execution Block end
 
-        //public bool AddContact(ContactModel obj)
-        //{
-        //    connection();
-        //    SqlCommand com = new SqlCommand("AddNewEmpDetails", con);
-        //    com.CommandType = CommandType.StoredProcedure;
-        //    com.Parameters.AddWithValue("@Name", obj.Name);
-        //    com.Parameters.AddWithValue("@City", obj.City);
-        //    com.Parameters.AddWithValue("@Address", obj.Address);
+                // Connection must be close
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
 
-        //    con.Open();
-        //    int i = com.ExecuteNonQuery();
-        //    con.Close();
-        //    if (i >= 1)
-        //    {
+                return dt;
+            }
+            finally
+            {
+                if (con.State == ConnectionState.Open)
+                {
+                    con.Close();
+                }
+            }
+        }
+        #endregion
 
-        //        return true;
+        public List<ContactModel> GetAllContacts()
+        {
+            List<ContactModel> ContactsList = new List<ContactModel>();
 
-        //    }
-        //    else
-        //    {
+            SqlCommand com = new SqlCommand("GetAllContact");
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
 
-        //        return false;
-        //    }
+            dt = FetchQuery(com);
 
+            foreach (DataRow dr in dt.Rows)
+            {
+                ContactsList.Add(
 
-        //}
+                    new ContactModel
+                    {
+                        SerialNo = Convert.ToInt32(dr["SerialNo"]),
+                        ContactID = Convert.ToInt32(dr["ContactID"]),
+                        //Profession = (dr["Profession"]),
+                        fName = Convert.ToString(dr["fName"]),
+                        lName = Convert.ToString(dr["lName"]),
+                        emailAddr = Convert.ToString(dr["emailAddr"]),
+                        Company = Convert.ToString(dr["Company"]),
+                        Category = (Category)Convert.ToInt32(dr["Category"])
+                    }
+                    );
+
+            }
+
+            return ContactsList;
+        }
+
+        
     }
 }

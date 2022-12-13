@@ -67,6 +67,7 @@ namespace CrudOPMVC.Repository
         }
         #endregion
 
+        #region CommonFetchQuery
         public DataTable FetchQuery(SqlCommand cmd)
         {
             try
@@ -102,6 +103,7 @@ namespace CrudOPMVC.Repository
                 }
             }
         }
+        #endregion
 
         public bool AddProfession(ProfessionModel obj)
         {
@@ -139,8 +141,6 @@ namespace CrudOPMVC.Repository
             }
 
             return ProfessionsList;
-
-
         }
 
         public bool UpdateProfession(ProfessionModel obj)

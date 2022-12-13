@@ -2,20 +2,33 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace CrudOPMVC.Models
 {
+    public enum Category
+    {
+        [Display(Name ="")]
+        All,
+        [Display(Name ="Client")]
+        Client,
+        [Display(Name = "Vendor")]
+        Vendor
+    }
     public class ContactModel
     {
         [DisplayName("Contact ID")]
         [Required(ErrorMessage = "Id is mandatory")]
         public int ContactID { get; set; }
 
+        public int ProfessionID { get; set; }
+
         [DisplayName("Profession")]
         [Required(ErrorMessage ="Profession is mandatory!!")]
-        public int ProfessionID { get; set; }
+        [ForeignKey("ProfessionModel")]
+        public ProfessionModel Profession { get; set; }
 
         [DisplayName("First Name")]
         [Required(ErrorMessage = "First name is mandatory!!")]
@@ -24,13 +37,14 @@ namespace CrudOPMVC.Models
         public string fName { get; set; }
 
         [DisplayName("Last Name")]
-        [StringLength(30,MinimumLength =3,ErrorMessage ="Last name character length should be in between 3 to 30.")]
+        [StringLength(30,ErrorMessage ="Last name character length should be less than 30.")]
         [RegularExpression("^[A-Za-z -]*$", ErrorMessage = "Sorry, only letters (a-z) are allowed.")]
         public string lName { get; set; }
 
         [DisplayName("Email")]
         [Required(ErrorMessage = "Email is mandatory!!")]
-        [RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Sorry, email is invalid.")]
+        [EmailAddress(ErrorMessage = "Sorry, email is invalid.")]
+        //[RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Sorry, email is invalid.")]
         public string emailAddr { get; set; }
 
         [DisplayName("Company")]
@@ -41,7 +55,19 @@ namespace CrudOPMVC.Models
 
         [DisplayName("Category")]
         [Required(ErrorMessage = "Category is mandatory!!")]
-        public byte Category { get; set; }
+        public Category Category { get; set; }
+
+        [DisplayName("Full Name")]
+        public string FullName
+        {
+            get
+            {
+               return string.Concat(fName," ", lName);
+            }
+        }
+
+        [DisplayName("S.No.")]
+        public int SerialNo { get; set; }
 
     }
 }

@@ -1,0 +1,61 @@
+﻿@model IEnumerable<CrudOPMVC.Models.ContactModel>
+@{
+    ViewBag.Title = "GetAllContacts";
+}
+
+<hr />
+
+<p>
+    @Html.ActionLink("Add New Contacts", "AddContact", "Contact", new { @class = "btn btn-outline-info" })
+</p>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.emailAddr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Company)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>Manage</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.ProfessionID)
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SerialNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.emailAddr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Company)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ContactID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                @Html.ActionLink("Delete", "DeleteProfession", new { id = item.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+

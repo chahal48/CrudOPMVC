@@ -41,9 +41,7 @@ namespace CrudOPMVC.Repository
                         ProfessionID = Convert.ToInt32(dr["ProfID"])
                     }
                     );
-
             }
-
             return ContactsList;
         }
 
@@ -81,6 +79,35 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@ContactID", Id);
 
             return Query(com);
+        }
+
+        public bool AvailableEmail(string email)
+        {
+            SqlCommand com = new SqlCommand("IsEmailAvailble");
+            com.CommandType = CommandType.StoredProcedure;
+            com.Parameters.AddWithValue("@Email", email);
+
+            SqlDataAdapter da = new SqlDataAdapter(com);
+            DataTable dt = new DataTable();
+
+            dt = FetchQuery(com);
+
+            int emailCount = 0;
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                emailCount = Convert.ToInt32(dr["AvailEmail"]);
+            }
+
+
+            if (emailCount > 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

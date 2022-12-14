@@ -1,10 +1,14 @@
-﻿using System;
+﻿using CrudOPMVC.Repository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.Web;
+using System.Web.Mvc;
 
 namespace CrudOPMVC.Models
 {
@@ -43,6 +47,8 @@ namespace CrudOPMVC.Models
         [DisplayName("Email")]
         [Required(ErrorMessage = "Email is mandatory!!")]
         [EmailAddress(ErrorMessage = "Sorry, email is invalid.")]
+        [StringLength(100, ErrorMessage = "Email character length should be less than 100.")]
+        [EmailAlreadyExist(ErrorMessage ="Email already exists!!")]
         //[RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Sorry, email is invalid.")]
         public string emailAddr { get; set; }
 
@@ -68,5 +74,14 @@ namespace CrudOPMVC.Models
         [DisplayName("S.No.")]
         public int SerialNo { get; set; }
 
+    }
+
+    public class EmailAlreadyExistAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            ContactsRepository ContactRepo = new ContactsRepository();
+            return ContactRepo.AvailableEmail(Convert.ToString(value));
+        }
     }
 }

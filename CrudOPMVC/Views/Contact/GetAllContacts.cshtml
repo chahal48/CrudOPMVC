@@ -21,6 +21,9 @@
             @Html.DisplayNameFor(model => model.emailAddr)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.Profession)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Company)
         </th>
         <th>
@@ -31,7 +34,7 @@
 
     @foreach (var item in Model)
     {
-        @Html.HiddenFor(model => item.ProfessionID)
+        @Html.HiddenFor(model => item.ContactID)
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.SerialNo)
@@ -41,6 +44,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.emailAddr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profession)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Company)

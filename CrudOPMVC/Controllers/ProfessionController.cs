@@ -11,13 +11,12 @@ namespace CrudOPMVC.Controllers
 {
     public class ProfessionController : Controller
     {
-
+        ProfessionRepository profRepository = new ProfessionRepository();
         // GET: Profession/GetAllProfession
         public ActionResult GetAllProfession()
         {
-            ProfessionRepository professionRepo = new ProfessionRepository();
             ModelState.Clear();
-            return View(professionRepo.GetAllProfessions());
+            return View(profRepository.GetAllProfessions());
         }
 
         // GET: Profession/AddProfession
@@ -34,8 +33,6 @@ namespace CrudOPMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    ProfessionRepository profRepository = new ProfessionRepository();
-
                     if (profRepository.AddProfession(prof))
                     {
                         //ViewBag.Message = "Profession details added successfully";
@@ -56,9 +53,7 @@ namespace CrudOPMVC.Controllers
         // GET: Profession/EditProfessionDetails/5
         public ActionResult EditProfessionDetails(int id)
         {
-            ProfessionRepository profRepository = new ProfessionRepository();
             return View(profRepository.GetAllProfessions().Find(prof => prof.ProfessionID == id));
-
         }
 
         // POST: Profession/EditProfessionDetails/5
@@ -68,8 +63,6 @@ namespace CrudOPMVC.Controllers
         {
             try
             {
-                ProfessionRepository profRepository = new ProfessionRepository();
-
                 profRepository.UpdateProfession(obj);
 
                 return RedirectToAction("GetAllProfessions");
@@ -85,14 +78,12 @@ namespace CrudOPMVC.Controllers
         {
             try
             {
-                ProfessionRepository professionRepository = new ProfessionRepository();
-                if (professionRepository.DeleteProfession(id))
+                if (profRepository.DeleteProfession(id))
                 {
-                    ViewBag.AlertMsg = "Employee details deleted successfully";
+                    ViewBag.AlertMsg = "Profession details deleted successfully";
 
                 }
                 return RedirectToAction("GetAllProfession");
-
             }
             catch
             {

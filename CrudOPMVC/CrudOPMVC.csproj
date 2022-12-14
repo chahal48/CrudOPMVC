@@ -107,6 +107,7 @@
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\ProfessionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CommonQuery.cs" />
     <Compile Include="Repository\ContactsRepository.cs" />
     <Compile Include="Repository\ProfessionRepository.cs" />
   </ItemGroup>
@@ -120,6 +121,8 @@
     <Content Include="Views\Profession\AddProfession.cshtml" />
     <Content Include="Views\Profession\EditProfessionDetails.cshtml" />
     <Content Include="Views\Contact\GetAllContacts.cshtml" />
+    <Content Include="Views\Contact\AddContact.cshtml" />
+    <Content Include="Views\Contact\EditContactDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

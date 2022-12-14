@@ -10,8 +10,6 @@ namespace CrudOPMVC.Models
 {
     public enum Category
     {
-        [Display(Name ="")]
-        All,
         [Display(Name ="Client")]
         Client,
         [Display(Name = "Vendor")]
@@ -19,16 +17,17 @@ namespace CrudOPMVC.Models
     }
     public class ContactModel
     {
+        //ProfessionModel professionModel = new ProfessionModel();
+
         [DisplayName("Contact ID")]
         [Required(ErrorMessage = "Id is mandatory")]
         public int ContactID { get; set; }
 
+        [DisplayName("Profession")]
+        [Required(ErrorMessage = "Sorry, Profession is not selected.")]
         public int ProfessionID { get; set; }
 
-        [DisplayName("Profession")]
-        [Required(ErrorMessage ="Profession is mandatory!!")]
-        [ForeignKey("ProfessionModel")]
-        public ProfessionModel Profession { get; set; }
+        public string Profession { get; set; }
 
         [DisplayName("First Name")]
         [Required(ErrorMessage = "First name is mandatory!!")]
@@ -54,7 +53,7 @@ namespace CrudOPMVC.Models
         public string Company { get; set; }
 
         [DisplayName("Category")]
-        [Required(ErrorMessage = "Category is mandatory!!")]
+        [Required(ErrorMessage = "Sorry, Category is not selected.")]
         public Category Category { get; set; }
 
         [DisplayName("Full Name")]

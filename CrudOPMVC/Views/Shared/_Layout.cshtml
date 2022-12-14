@@ -13,7 +13,8 @@
         <div class="container">
             <div class="navbar-header">
                 @Html.ActionLink("CrudOpMVC", "GetAllProfession", "Profession", new { area = "" }, new { @class = "navbar-brand display-1 text-white " })
-                @Html.ActionLink("Professions", "GetAllProfession", "Profession", new { @class = "btn btn-outline-info" })
+                @Html.ActionLink("Professions", "GetAllProfession", "Profession", new { area = "" }, new { @class = "btn btn-light" })
+                @Html.ActionLink("Contacts", "GetAllContacts", "Contact", new { area = "" }, new { @class = "btn btn-light" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

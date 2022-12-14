@@ -15,7 +15,6 @@ namespace CrudOPMVC.Repository
 
         public bool AddProfession(ProfessionModel obj)
         {
-
             SqlCommand com = new SqlCommand("AddNewProfession");
             com.Parameters.AddWithValue("@Profession", obj.Profession);
             com.Parameters.AddWithValue("@Description", obj.Description);
@@ -45,7 +44,6 @@ namespace CrudOPMVC.Repository
                         Description = Convert.ToString(dr["Description"])
                     }
                     );
-
             }
 
             return ProfessionsList;

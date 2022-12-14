@@ -23,7 +23,7 @@ namespace CrudOPMVC.Controllers
 
         // GET: Contact/AddContact
         public ActionResult AddContact()
-        { 
+        {
             ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
 
             return View();
@@ -37,15 +37,15 @@ namespace CrudOPMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (contactRepo.AddContact(contactModel))
-                    {
-                        //ViewBag.Message = "Contact details added successfully";
-                        return RedirectToAction("GetAllContacts", "Contact");
-                    }
-                    else
-                    {
-                        ViewBag.Message = ConnectionErrorMessage;
-                    }
+                        if (contactRepo.AddContact(contactModel))
+                        {
+                            //ViewBag.Message = "Contact details added successfully";
+                            return RedirectToAction("GetAllContacts", "Contact");
+                        }
+                        else
+                        {
+                            ViewBag.Message = ConnectionErrorMessage;
+                        }
                 }
                 ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
                 return View();
@@ -57,7 +57,7 @@ namespace CrudOPMVC.Controllers
                 return View();
             }
         }
-        
+
         // GET: Contact/EditContactDetails/5
         public ActionResult EditContactDetails(int id)
         {
@@ -71,7 +71,7 @@ namespace CrudOPMVC.Controllers
         public ActionResult EditContactDetails(int id, ContactModel obj)
         {
             try
-            {                
+            {
                 if (contactRepo.UpdateContact(obj))
                 {
                     //ViewBag.Message = "Contact details added successfully";

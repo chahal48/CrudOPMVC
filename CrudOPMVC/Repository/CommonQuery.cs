@@ -12,6 +12,7 @@ namespace CrudOPMVC.Repository
     public class CommonQuery
     {
         private SqlConnection con;
+        private SqlDataReader dr;
         private void connection()
         {
             string constr = ConfigurationManager.ConnectionStrings["constr"].ToString();

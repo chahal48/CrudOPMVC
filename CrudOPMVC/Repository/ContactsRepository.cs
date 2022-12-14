@@ -32,7 +32,6 @@ namespace CrudOPMVC.Repository
                     {
                         SerialNo = Convert.ToInt32(dr["SerialNo"]),
                         ContactID = Convert.ToInt32(dr["ContactID"]),
-                        //Profession = (dr["Profession"]),
                         fName = Convert.ToString(dr["fName"]),
                         lName = Convert.ToString(dr["lName"]),
                         emailAddr = Convert.ToString(dr["emailAddr"]),
@@ -49,8 +48,21 @@ namespace CrudOPMVC.Repository
 
         public bool AddContact(ContactModel obj)
         {
-
             SqlCommand com = new SqlCommand("AddContact");
+            com.Parameters.AddWithValue("@ProfessionID", obj.ProfessionID);
+            com.Parameters.AddWithValue("@fName", obj.fName);
+            com.Parameters.AddWithValue("@lName", obj.lName);
+            com.Parameters.AddWithValue("@emailAddr", obj.emailAddr);
+            com.Parameters.AddWithValue("@Company", obj.Company);
+            com.Parameters.AddWithValue("@Category", obj.Category);
+
+            return Query(com);
+        }
+
+        public bool UpdateContact(ContactModel obj)
+        {
+            SqlCommand com = new SqlCommand("UpdateContact");
+            com.Parameters.AddWithValue("@ContactID", obj.ContactID);
             com.Parameters.AddWithValue("@ProfessionID", obj.ProfessionID);
             com.Parameters.AddWithValue("@fName", obj.fName);
             com.Parameters.AddWithValue("@lName", obj.lName);

@@ -11,6 +11,8 @@ namespace CrudOPMVC.Controllers
 {
     public class ProfessionController : Controller
     {
+        const string ConnectionErrorMessage = "Invalid credentials or connection erorr.";
+
         ProfessionRepository profRepository = new ProfessionRepository();
         // GET: Profession/GetAllProfession
         public ActionResult GetAllProfession()
@@ -40,13 +42,14 @@ namespace CrudOPMVC.Controllers
                     }
                     else
                     {
-                        ViewBag.Message = "Error adding profession details";
+                        ViewBag.Message = ConnectionErrorMessage;
                     }
                 }
                 return View();
             }
             catch
             {
+                ViewBag.Message = ConnectionErrorMessage;
                 return View();
             }
         }
@@ -63,12 +66,20 @@ namespace CrudOPMVC.Controllers
         {
             try
             {
-                profRepository.UpdateProfession(obj);
-
-                return RedirectToAction("GetAllProfessions");
+                if (profRepository.UpdateProfession(obj))
+                {
+                    //ViewBag.Message = "Profession details added successfully";
+                    return RedirectToAction("GetAllProfession", "Profession");
+                }
+                else
+                {
+                    ViewBag.Message = ConnectionErrorMessage;
+                }
+                return View();
             }
             catch
             {
+                ViewBag.Message = ConnectionErrorMessage;
                 return View();
             }
         }

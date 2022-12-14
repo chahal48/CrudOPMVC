@@ -37,7 +37,8 @@ namespace CrudOPMVC.Repository
                         emailAddr = Convert.ToString(dr["emailAddr"]),
                         Company = Convert.ToString(dr["Company"]),
                         Category = (Category)Convert.ToInt32(dr["Category"]),
-                        Profession = Convert.ToString(dr["Profession"])
+                        Profession = Convert.ToString(dr["Profession"]),
+                        ProfessionID = Convert.ToInt32(dr["ProfID"])
                     }
                     );
 

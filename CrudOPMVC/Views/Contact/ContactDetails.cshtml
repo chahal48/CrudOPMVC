@@ -64,7 +64,7 @@
                 <div class="col-md-offset-2 col-md-3">
                     @Html.ActionLink("Edit", "EditContactDetails", new { id = Model.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
                     @Html.ActionLink("Delete", "DeleteContact", new { id = Model.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
-                    @Html.ActionLink("Go Contact List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" })
                 </div>
             </div>
         </div>

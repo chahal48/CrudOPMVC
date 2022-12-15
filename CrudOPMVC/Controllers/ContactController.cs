@@ -95,6 +95,12 @@ namespace CrudOPMVC.Controllers
             }
         }
 
+        // GET: Contact/ContactDetails/5
+        public ActionResult ContactDetails(int id)
+        {
+            ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
+            return View(contactRepo.GetAllContacts().Find(Contact => Contact.ContactID == id));
+        }
         // GET: Contact/DeleteContact/5
         public ActionResult DeleteContact(int id)
         {

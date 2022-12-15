@@ -22,7 +22,8 @@
                 <div class="col-md-8"></div>
                 <div class="col-md-offset-2 col-md-3">
                     <input type="submit" value="Update" class="btn btn-outline-success" />
-                    @Html.ActionLink("Cancel", "GetAllContacts", "Contact", new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Details", "ContactDetails", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                    @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" })
                 </div>
             </div>
         </div>

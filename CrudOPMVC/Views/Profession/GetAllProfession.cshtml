@@ -9,7 +9,7 @@
         <div class="col-md-9">
         </div>
         <div class="col-md-3">
-            @Html.ActionLink("Add New Profession", "AddProfession", "Profession", new { @class = "btn btn-outline-info" })
+            @Html.ActionLink("Add New Profession", "AddProfession", "Profession", new { @class = "btn btn-outline-dark" })
         </div>
     </div>
 </div>
@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID }, new { @class = "btn btn-outline-success" }) &nbsp;
                 @Html.ActionLink("Delete", "DeleteProfession", new { id = item.ProfessionID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
             </td>
         </tr>

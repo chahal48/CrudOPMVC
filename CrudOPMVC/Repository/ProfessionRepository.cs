@@ -38,7 +38,6 @@ namespace CrudOPMVC.Repository
 
                     new ProfessionModel
                     {
-                        SerialNo = Convert.ToInt32(dr["SerialNo"]),
                         ProfessionID = Convert.ToInt32(dr["ProfessionID"]),
                         Profession = Convert.ToString(dr["Profession"]),
                         Description = Convert.ToString(dr["Description"])

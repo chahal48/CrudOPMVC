@@ -5,15 +5,22 @@
 
 <hr />
 
-<p>
-    @Html.ActionLink("Add New Contacts", "AddContact", "Contact", new { @class = "btn btn-outline-info" })
-</p>
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2">
+            @Html.ActionLink("Add New Contacts", "AddContact", "Contact", new { @class = "btn btn-outline-info" })
+        </div>
+    </div>
+</div>
+<hr />
 
 <table class="table table-bordered">
     <tr>
-        <th>
+        @*<th>
             @Html.DisplayNameFor(model => model.SerialNo)
-        </th>
+        </th>*@
         <th>
             @Html.DisplayNameFor(model => model.FullName)
         </th>
@@ -36,9 +43,9 @@
     {
         @Html.HiddenFor(model => item.ContactID)
         <tr>
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.SerialNo)
-            </td>
+            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>

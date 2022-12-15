@@ -24,7 +24,7 @@ namespace CrudOPMVC.Controllers
         // GET: Contact/AddContact
         public ActionResult AddContact()
         {
-            ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
+            ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
 
             return View();
         }
@@ -35,25 +35,26 @@ namespace CrudOPMVC.Controllers
         {
             try
             {
+
                 if (ModelState.IsValid)
                 {
-                        if (contactRepo.AddContact(contactModel))
-                        {
-                            //ViewBag.Message = "Contact details added successfully";
-                            return RedirectToAction("GetAllContacts", "Contact");
-                        }
-                        else
-                        {
-                            ViewBag.Message = ConnectionErrorMessage;
-                        }
+                    if (contactRepo.AddContact(contactModel))
+                    {
+                        //ViewBag.Message = "Contact details added successfully";
+                        return RedirectToAction("GetAllContacts", "Contact");
+                    }
+                    else
+                    {
+                        ViewBag.Message = ConnectionErrorMessage;
+                    }
                 }
-                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
+                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
                 return View();
             }
             catch
             {
                 ViewBag.Message = ConnectionErrorMessage;
-                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
+                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
                 return View();
             }
         }
@@ -61,7 +62,7 @@ namespace CrudOPMVC.Controllers
         // GET: Contact/EditContactDetails/5
         public ActionResult EditContactDetails(int id)
         {
-            ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
+            ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
             return View(contactRepo.GetAllContacts().Find(Contact => Contact.ContactID == id));
         }
 
@@ -72,22 +73,25 @@ namespace CrudOPMVC.Controllers
         {
             try
             {
-                if (contactRepo.UpdateContact(obj))
+                if (ModelState.IsValid)
                 {
-                    //ViewBag.Message = "Contact details added successfully";
-                    return RedirectToAction("GetAllContacts", "Contact");
+                    if (contactRepo.UpdateContact(obj))
+                    {
+                        //ViewBag.Message = "Contact details added successfully";
+                        return RedirectToAction("GetAllContacts", "Contact");
+                    }
+                    else
+                    {
+                        ViewBag.Message = ConnectionErrorMessage;
+                    }
                 }
-                else
-                {
-                    ViewBag.Message = ConnectionErrorMessage;
-                }
-                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
+                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
                 return View();
             }
             catch
             {
                 ViewBag.Message = ConnectionErrorMessage;
-                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions(), "ProfessionID", "Profession");
+                ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
                 return View();
             }
         }

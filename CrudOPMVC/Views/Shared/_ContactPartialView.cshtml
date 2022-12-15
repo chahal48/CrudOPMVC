@@ -1,0 +1,74 @@
+﻿@model CrudOPMVC.Models.ContactModel
+
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.fName, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.fName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.fName, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.lName, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.lName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.lName, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<br />
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.emailAddr, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.emailAddr, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.emailAddr, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.ProfessionID, htmlAttributes: new { @class = "control-label" })
+            @Html.DropDownListFor(model => model.ProfessionID, ViewBag.itemList as SelectList, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProfessionID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<br />
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.Company, htmlAttributes: new { @class = "control-label" })
+            @Html.EditorFor(model => model.Company, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Company, "", new { @class = "text-danger" })
+        </div>
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
+            @Html.EnumDropDownListFor(model => model.Category, "Select Category", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<br />
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-1">
+            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Male, new { @checked = "checked" })
+            @Html.Label(CrudOPMVC.Models.Gender.Male.ToString(), new { @class = "control-label" })
+        </div>
+        <div class="col-md-1">
+            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Female)
+            @Html.Label(CrudOPMVC.Models.Gender.Female.ToString(), new { @class = "control-label" })
+        </div>
+        <div class="col-md-1">
+            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Other)
+            @Html.Label(CrudOPMVC.Models.Gender.Other.ToString(), new { @class = "control-label" })
+        </div>
+    </div>
+    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+</div>
+<br />
+@*<div class="form-group">
+    <div class="row">
+        <div class="col-md-5">
+            @Html.LabelFor(model => model.ContactImage, htmlAttributes: new { @class = "control-label" })
+            <input type="image" id="ImageValue" name="ImageValue" value="" />
+        </div>
+    </div>
+</div>
+<br />*@

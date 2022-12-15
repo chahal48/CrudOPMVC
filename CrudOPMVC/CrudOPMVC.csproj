@@ -123,6 +123,8 @@
     <Content Include="Views\Contact\GetAllContacts.cshtml" />
     <Content Include="Views\Contact\AddContact.cshtml" />
     <Content Include="Views\Contact\EditContactDetails.cshtml" />
+    <Content Include="Views\Shared\_ContactPartialView.cshtml" />
+    <Content Include="Views\Shared\_ProfessionPartialView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -35,7 +35,6 @@ namespace CrudOPMVC.Controllers
         {
             try
             {
-
                 if (ModelState.IsValid)
                 {
                     if (contactRepo.AddContact(contactModel))

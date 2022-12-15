@@ -38,7 +38,8 @@ namespace CrudOPMVC.Repository
                         Company = Convert.ToString(dr["Company"]),
                         Category = (Category)Convert.ToInt32(dr["Category"]),
                         Profession = Convert.ToString(dr["Profession"]),
-                        ProfessionID = Convert.ToInt32(dr["ProfID"])
+                        ProfessionID = Convert.ToInt32(dr["ProfID"]),
+                        Gender = (Gender)Convert.ToInt32((dr["Gender"]))
                     }
                     );
             }
@@ -54,6 +55,7 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@emailAddr", obj.emailAddr);
             com.Parameters.AddWithValue("@Company", obj.Company);
             com.Parameters.AddWithValue("@Category", obj.Category);
+            com.Parameters.AddWithValue("@Gender", obj.Gender);
 
             return Query(com);
         }
@@ -68,6 +70,7 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@emailAddr", obj.emailAddr);
             com.Parameters.AddWithValue("@Company", obj.Company);
             com.Parameters.AddWithValue("@Category", obj.Category);
+            com.Parameters.AddWithValue("@Gender", obj.Gender);
 
             return Query(com);
         }
@@ -81,33 +84,33 @@ namespace CrudOPMVC.Repository
             return Query(com);
         }
 
-        public bool AvailableEmail(string email)
-        {
-            SqlCommand com = new SqlCommand("IsEmailAvailble");
-            com.CommandType = CommandType.StoredProcedure;
-            com.Parameters.AddWithValue("@Email", email);
+        //public bool AvailableEmail(string email)
+        //{
+        //    SqlCommand com = new SqlCommand("IsEmailAvailble");
+        //    com.CommandType = CommandType.StoredProcedure;
+        //    com.Parameters.AddWithValue("@Email", email);
 
-            SqlDataAdapter da = new SqlDataAdapter(com);
-            DataTable dt = new DataTable();
+        //    SqlDataAdapter da = new SqlDataAdapter(com);
+        //    DataTable dt = new DataTable();
 
-            dt = FetchQuery(com);
+        //    dt = FetchQuery(com);
 
-            int emailCount = 0;
+        //    int emailCount = 0;
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                emailCount = Convert.ToInt32(dr["AvailEmail"]);
-            }
+        //    foreach (DataRow dr in dt.Rows)
+        //    {
+        //        emailCount = Convert.ToInt32(dr["AvailEmail"]);
+        //    }
 
 
-            if (emailCount > 0)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
+        //    if (emailCount > 0)
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
     }
 }

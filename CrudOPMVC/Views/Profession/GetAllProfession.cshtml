@@ -4,16 +4,21 @@
 }
 
 <hr />
-
-<p>
-    @Html.ActionLink("Add New Profession", "AddProfession", "Profession", new { @class = "btn btn-outline-info" })
-</p>
-
+<div class="form-group">
+    <div class="row">
+        <div class="col-md-9">
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Add New Profession", "AddProfession", "Profession", new { @class = "btn btn-outline-info" })
+        </div>
+    </div>
+</div>
+<hr />
 <table class="table table-bordered">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SerialNo)
-        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.SerialNo)
+            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.Profession)
         </th>
@@ -27,9 +32,9 @@
     {
         @Html.HiddenFor(model => item.ProfessionID)
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.SerialNo)
-            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.SerialNo)
+                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Profession)
             </td>
@@ -37,8 +42,8 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID } , new { @class = "btn btn-outline-info" }) &nbsp;
-                @Html.ActionLink("Delete", "DeleteProfession", new { id = item.ProfessionID }, new { onclick = "return confirm('Are sure wants to delete?');" , @class = "btn btn-outline-danger" })
+                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                @Html.ActionLink("Delete", "DeleteProfession", new { id = item.ProfessionID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
             </td>
         </tr>
 

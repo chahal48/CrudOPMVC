@@ -54,9 +54,9 @@ namespace CrudOPMVC.Models
 
         [DisplayName("Email")]
         [Required(ErrorMessage = "Email is mandatory!!")]
-        [EmailAddress(ErrorMessage = "Sorry, email is invalid.")]
+        //[EmailAddress(ErrorMessage = "Sorry, email is invalid.")]
         [StringLength(100, ErrorMessage = "Email character length should be less than 100.")]
-        //[RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Sorry, email is invalid.")]
+        [RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Sorry, email is invalid.")]
         public string emailAddr { get; set; }
 
         [DisplayName("Company")]

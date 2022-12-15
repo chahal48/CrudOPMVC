@@ -42,7 +42,7 @@
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                @Html.ActionLink("Edit", "EditProfessionDetails", new { id = item.ProfessionID }, new { @class = "btn btn-outline-success" }) &nbsp;
                 @Html.ActionLink("Delete", "DeleteProfession", new { id = item.ProfessionID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
             </td>
         </tr>

@@ -125,6 +125,7 @@
     <Content Include="Views\Contact\EditContactDetails.cshtml" />
     <Content Include="Views\Shared\_ContactPartialView.cshtml" />
     <Content Include="Views\Shared\_ProfessionPartialView.cshtml" />
+    <Content Include="Views\Contact\ContactDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

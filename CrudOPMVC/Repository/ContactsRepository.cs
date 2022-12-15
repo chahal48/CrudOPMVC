@@ -39,7 +39,8 @@ namespace CrudOPMVC.Repository
                         Category = (Category)Convert.ToInt32(dr["Category"]),
                         Profession = Convert.ToString(dr["Profession"]),
                         ProfessionID = Convert.ToInt32(dr["ProfID"]),
-                        Gender = (Gender)Convert.ToInt32((dr["Gender"]))
+                        Gender = (Gender)Convert.ToInt32((dr["Gender"])),
+                        DOB = (DateTime)dr["DOB"]
                     }
                     );
             }
@@ -56,6 +57,7 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@Company", obj.Company);
             com.Parameters.AddWithValue("@Category", obj.Category);
             com.Parameters.AddWithValue("@Gender", obj.Gender);
+            com.Parameters.AddWithValue("@DOB", obj.DOB);
 
             return Query(com);
         }
@@ -71,6 +73,7 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@Company", obj.Company);
             com.Parameters.AddWithValue("@Category", obj.Category);
             com.Parameters.AddWithValue("@Gender", obj.Gender);
+            com.Parameters.AddWithValue("@DOB", obj.DOB);
 
             return Query(com);
         }

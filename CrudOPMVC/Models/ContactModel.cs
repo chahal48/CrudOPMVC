@@ -84,6 +84,12 @@ namespace CrudOPMVC.Models
 
         [DisplayName("S.No.")]
         public int SerialNo { get; set; }
+        
+        
+        [Required(ErrorMessage = "Date is mandatory!!")]
+        [DisplayName("Date of Brith")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime DOB { get; set; }
 
     }
 }

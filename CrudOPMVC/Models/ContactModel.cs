@@ -91,5 +91,13 @@ namespace CrudOPMVC.Models
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DOB { get; set; }
 
+        [DisplayName("Slack")]
+        public bool ModeSlack { get; set; }
+        [DisplayName("Whatsapp")]
+        public bool ModeWhatsapp { get; set; }
+        [DisplayName("Email")]
+        public bool ModeEmail { get; set; }
+        [DisplayName("Phone")]
+        public bool ModePhone { get; set; }
     }
 }

@@ -40,7 +40,11 @@ namespace CrudOPMVC.Repository
                         Profession = Convert.ToString(dr["Profession"]),
                         ProfessionID = Convert.ToInt32(dr["ProfID"]),
                         Gender = (Gender)Convert.ToInt32((dr["Gender"])),
-                        DOB = (DateTime)dr["DOB"]
+                        DOB = (DateTime)dr["DOB"],
+                        ModeSlack = Convert.ToBoolean(dr["ModeSlack"]),
+                        ModeWhatsapp = Convert.ToBoolean(dr["ModeWhatsapp"]),
+                        ModePhone = Convert.ToBoolean(dr["ModePhone"]),
+                        ModeEmail = Convert.ToBoolean(dr["ModeEmail"])
                     }
                     );
             }
@@ -58,6 +62,10 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@Category", obj.Category);
             com.Parameters.AddWithValue("@Gender", obj.Gender);
             com.Parameters.AddWithValue("@DOB", obj.DOB);
+            com.Parameters.AddWithValue("@ModeSlack", obj.ModeSlack);
+            com.Parameters.AddWithValue("@ModeEmail", obj.ModeEmail);
+            com.Parameters.AddWithValue("@ModePhone", obj.ModePhone);
+            com.Parameters.AddWithValue("@ModeWhatsapp", obj.ModeWhatsapp);
 
             return Query(com);
         }
@@ -74,6 +82,10 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@Category", obj.Category);
             com.Parameters.AddWithValue("@Gender", obj.Gender);
             com.Parameters.AddWithValue("@DOB", obj.DOB);
+            com.Parameters.AddWithValue("@ModeSlack", obj.ModeSlack);
+            com.Parameters.AddWithValue("@ModeEmail", obj.ModeEmail);
+            com.Parameters.AddWithValue("@ModePhone", obj.ModePhone);
+            com.Parameters.AddWithValue("@ModeWhatsapp", obj.ModeWhatsapp);
 
             return Query(com);
         }

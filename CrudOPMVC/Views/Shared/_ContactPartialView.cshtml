@@ -51,37 +51,42 @@
             @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", Type = "Date" } })
             @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+            <br />
+            @Html.Label("Gender :")
+            <br />
+            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Male, new { @checked = "checked" })
+            @Html.Label(CrudOPMVC.Models.Gender.Male.ToString(), new { @class = "control-label" }) &nbsp;
+            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Female)
+            @Html.Label(CrudOPMVC.Models.Gender.Female.ToString(), new { @class = "control-label" }) &nbsp;
+            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Other)
+            @Html.Label(CrudOPMVC.Models.Gender.Other.ToString(), new { @class = "control-label" })
+            <br />
+            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
         </div>
+        <div class="col-md-2"></div>
         <div class="col-md-5">
-            
+            @Html.Label("Mode of communication :")
+            <br />
+            @Html.CheckBoxFor(model => model.ModeSlack) &nbsp;
+            @Html.LabelFor(model => model.ModeSlack, htmlAttributes: new { @class = "control-label" })
+            <br />
+            @Html.CheckBoxFor(model => model.ModeEmail) &nbsp;
+            @Html.LabelFor(model => model.ModeEmail, htmlAttributes: new { @class = "control-label" })
+            <br />
+            @Html.CheckBoxFor(model => model.ModePhone) &nbsp;
+            @Html.LabelFor(model => model.ModePhone, htmlAttributes: new { @class = "control-label" })
+            <br />
+            @Html.CheckBoxFor(model => model.ModeWhatsapp) &nbsp;
+            @Html.LabelFor(model => model.ModeWhatsapp, htmlAttributes: new { @class = "control-label" })
         </div>
     </div>
 </div>
 <br />
 <div class="form-group">
     <div class="row">
-        <div class="col-md-1">
-            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Male, new { @checked = "checked" })
-            @Html.Label(CrudOPMVC.Models.Gender.Male.ToString(), new { @class = "control-label" })
-        </div>
-        <div class="col-md-1">
-            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Female)
-            @Html.Label(CrudOPMVC.Models.Gender.Female.ToString(), new { @class = "control-label" })
-        </div>
-        <div class="col-md-1">
-            @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Other)
-            @Html.Label(CrudOPMVC.Models.Gender.Other.ToString(), new { @class = "control-label" })
+        <div class="col-md-5">            
+            <input id="File1" name="File1" type="file" />
         </div>
     </div>
-    @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
 </div>
 <br />
-@*<div class="form-group">
-    <div class="row">
-        <div class="col-md-5">
-            @Html.LabelFor(model => model.ContactImage, htmlAttributes: new { @class = "control-label" })
-            <input type="image" id="ImageValue" name="ImageValue" value="" />
-        </div>
-    </div>
-</div>
-<br />*@

@@ -110,6 +110,10 @@ namespace CrudOPMVC.Controllers
 
                         contactModel.ContactImage = FullImageName;
                     }
+                    else
+                    {
+                        contactModel.ContactImage = contactRepo.GetAllContacts().Find(Contact => Contact.ContactID == id).ContactImage;
+                    }
 
                     if (contactRepo.UpdateContact(contactModel))
                     {
@@ -122,13 +126,13 @@ namespace CrudOPMVC.Controllers
                     }
                 }
                 ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
-                return View();
+                return View(contactModel);
             }
             catch
             {
                 ViewBag.Message = ConnectionErrorMessage;
                 ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
-                return View();
+                return View(contactModel);
             }
         }
 

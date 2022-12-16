@@ -75,12 +75,12 @@ namespace CrudOPMVC.Controllers
                 {
                     ViewBag.Message = ConnectionErrorMessage;
                 }
-                return View();
+                return View(obj);
             }
             catch
             {
                 ViewBag.Message = ConnectionErrorMessage;
-                return View();
+                return View(obj);
             }
         }
 

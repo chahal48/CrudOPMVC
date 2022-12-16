@@ -16,60 +16,72 @@
 </div>
 <hr />
 
-<table class="table table-bordered">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.SerialNo)
-        </th>*@
-        <th>
-            @Html.DisplayNameFor(model => model.FullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.emailAddr)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Profession)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Company)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-        <th class="text-center">Manage</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        @Html.HiddenFor(model => item.ContactID)
+<table class="display" id="AllContactList">
+    <thead>
         <tr>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.SerialNo)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.emailAddr)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Profession)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Company)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category)
-            </td>
-            <td align="center">
-                @Html.ActionLink("Edit", "EditContactDetails", new { id = item.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
-                @Html.ActionLink("Details", "ContactDetails", new { id = item.ContactID }, new { @class = "btn btn-outline-info" }) &nbsp;
-                @Html.ActionLink("Delete", "DeleteContact", new { id = item.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
-            </td>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.SerialNo)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.emailAddr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Profession)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Company)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th class="text-center">Manage</th>
         </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.HiddenFor(model => item.ContactID)
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.SerialNo)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.emailAddr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Profession)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Company)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td align="center" colspan="2">
+                    @Html.ActionLink("Edit", "EditContactDetails", new { id = item.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
+                    @Html.ActionLink("Details", "ContactDetails", new { id = item.ContactID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                    @Html.ActionLink("Delete", "DeleteContact", new { id = item.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
+                </td>
+            </tr>
 
-    }
-
+        }
+    </tbody>
 </table>
+
+
+@section scripts{
+    <script src="~/Content/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#AllContactList').DataTable();
+        });
+    </script>
+}
 
 

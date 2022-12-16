@@ -40,7 +40,7 @@ namespace CrudOPMVC.Repository
                         Profession = Convert.ToString(dr["Profession"]),
                         ProfessionID = Convert.ToInt32(dr["ProfID"]),
                         Gender = (Gender)Convert.ToInt32((dr["Gender"])),
-                        DOB = (DateTime)dr["DOB"],
+                        DOB = (Nullable<System.DateTime>)dr["DOB"],
                         ModeSlack = Convert.ToBoolean(dr["ModeSlack"]),
                         ModeWhatsapp = Convert.ToBoolean(dr["ModeWhatsapp"]),
                         ModePhone = Convert.ToBoolean(dr["ModePhone"]),

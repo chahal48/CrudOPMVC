@@ -84,14 +84,16 @@ namespace CrudOPMVC.Models
 
         [DisplayName("S.No.")]
         public int SerialNo { get; set; }
-        
-        
-        [Required(ErrorMessage = "Date is mandatory!!")]
+
+
+        [ValidDateCheck(ErrorMessage = "Date should be valid and not null !!")]
+        [Required(ErrorMessage = "Date should be valid and not null !!")]
         [MinimumAge(5,ErrorMessage = "Minimum age requirement is 5 or more.")]
+        [MaximumAge(60,ErrorMessage = "Maximum age requirement is 60 or less.")]
         [DataType(DataType.Date)]
         [DisplayName("Date of Brith")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> DOB { get; set; }
+        public DateTime DOB { get; set; }
 
         [DisplayName("Slack")]
         public bool ModeSlack { get; set; }
@@ -107,21 +109,54 @@ namespace CrudOPMVC.Models
         public string ContactImage { get; set; }
     }
 
+    public class ValidDateCheckAttribute : ValidationAttribute
+    {
+        public override bool IsValid(object value)
+        {
+            DateTime date;
+            if (DateTime.TryParse(Convert.ToString(value), out date))
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public class MaximumAgeAttribute : ValidationAttribute
+    {
+        int _MaximumAge;
+
+        public MaximumAgeAttribute(int maximumAge)
+        {
+            _MaximumAge = maximumAge * -1;
+        }
+
+        public override bool IsValid(object value)
+        {
+            DateTime date;
+            if (DateTime.TryParse(Convert.ToString(value), out date))
+            {
+                return date > DateTime.Now.AddYears(_MaximumAge);
+            }
+            return false;
+        }
+    }
+
     public class MinimumAgeAttribute : ValidationAttribute
     {
         int _minimumAge;
 
         public MinimumAgeAttribute(int minimumAge)
         {
-            _minimumAge = minimumAge;
+            _minimumAge = minimumAge * -1;
         }
 
         public override bool IsValid(object value)
         {
             DateTime date;
-            if (DateTime.TryParse(value.ToString(), out date))
+            if (DateTime.TryParse(Convert.ToString(value), out date))
             {
-                return date.AddYears(_minimumAge) < DateTime.Now;
+                return date < DateTime.Now.AddYears(_minimumAge);
             }
             return false;
         }

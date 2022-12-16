@@ -97,6 +97,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\jquery.validate.min.js" />
     <Content Include="Content\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\jquery-ui.min.js" />
+    <Content Include="Content\jquery-ui.min.css" />
     <Content Include="Upload\blank.jpg" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -138,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="lib\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

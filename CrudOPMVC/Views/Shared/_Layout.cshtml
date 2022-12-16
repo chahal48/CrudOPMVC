@@ -7,6 +7,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top bg-dark">
@@ -33,6 +34,30 @@
 
     <script src="~/Content/jquery.min.js"></script>
     <script src="~/Content/bootstrap.min.js"></script>
+
+    <script src="~/Content/jquery.min.js"></script>
+    <script src="~/Content/jquery-ui.min.js"></script>
+    <script>
+
+        
+        $(document).ready(function () {
+            $('#DOB').datepicker({
+                dateFormat: "yy-mm-dd",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: '1980:2017',
+                maxDate: '-5Y',
+                //minDate: '-40Y',
+                defaultDate: '1980-01-01',
+                onSelect: function (date, datepicker) {
+                    if (date != "") {
+                        var DateChangeValue = document.getElementById('DOB');
+                        $(DateChangeValue).attr('value', date);
+                    }
+                }
+                });
+        })
+    </script>
 
     <script>
         function fileValidation() {
@@ -76,7 +101,7 @@
             }
         }
     </script>
-    
+
     @RenderSection("scripts", required: false)
 
 </body>

@@ -99,5 +99,7 @@ namespace CrudOPMVC.Models
         public bool ModeEmail { get; set; }
         [DisplayName("Phone")]
         public bool ModePhone { get; set; }
+
+        public HttpPostedFileBase ContactImage { get; set; }
     }
 }

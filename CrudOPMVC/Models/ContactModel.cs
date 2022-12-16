@@ -87,9 +87,11 @@ namespace CrudOPMVC.Models
         
         
         [Required(ErrorMessage = "Date is mandatory!!")]
+        [MinimumAge(5,ErrorMessage = "Minimum age requirement is 5 or more.")]
+        [DataType(DataType.Date)]
         [DisplayName("Date of Brith")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime DOB { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
 
         [DisplayName("Slack")]
         public bool ModeSlack { get; set; }
@@ -103,5 +105,25 @@ namespace CrudOPMVC.Models
         public HttpPostedFileBase Image { get; set; }
 
         public string ContactImage { get; set; }
+    }
+
+    public class MinimumAgeAttribute : ValidationAttribute
+    {
+        int _minimumAge;
+
+        public MinimumAgeAttribute(int minimumAge)
+        {
+            _minimumAge = minimumAge;
+        }
+
+        public override bool IsValid(object value)
+        {
+            DateTime date;
+            if (DateTime.TryParse(value.ToString(), out date))
+            {
+                return date.AddYears(_minimumAge) < DateTime.Now;
+            }
+            return false;
+        }
     }
 }

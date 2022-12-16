@@ -84,9 +84,16 @@
 <br />
 <div class="form-group">
     <div class="row">
-        <div class="col-md-5">            
-            <input id="File1" name="File1" type="file" />
+        <!-- Image preview -->
+        <div class="rounded-3" style="width:120px;height:120px;">
+            <div id="ImageVisibility">
+                <img src="~/Upload/blank.jpg" id="imagePreview" alt="Show Image" class="rounded-2" style="width:84px;height:84px;">
+            </div>
         </div>
+        <div class="col-md-5">
+            <input type="file" id="file" onchange="return fileValidation()" />
+        </div>
+
     </div>
 </div>
 <br />

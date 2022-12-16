@@ -6,7 +6,6 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top bg-dark">
@@ -33,5 +32,50 @@
 
     <script src="~/Content/jquery.min.js"></script>
     <script src="~/Content/bootstrap.min.js"></script>
+    <script>
+        function fileValidation() {
+            const alertMessage = "Invalid file type!! \nOnly files with the following extension are allowed :  jpg jpeg png gif.";
+            var baseUrl = document.location.origin;
+            var DefaultImagePath = baseUrl + '/Upload/blank.jpg'; 
+
+            var fileInput = document.getElementById('file');
+
+            var filePath = fileInput.value;
+
+            // Allowing file type
+            var allowedExtensions =
+                /(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+            if (!allowedExtensions.exec(filePath)) {
+
+                alert(alertMessage);
+                fileInput.value = '';
+                var DefaultImage = document.getElementById('imagePreview');
+                $(DefaultImage).attr('src', DefaultImagePath);
+                return false;
+            }
+            else {
+
+                // Image preview
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        //document.getElementById(
+                        //    'imagePreview').innerHTML =
+                        //    '<img src="' + e.target.result
+                        //    + '"/>';
+                        
+                        var Preview = document.getElementById('imagePreview');
+                        //var src = ($(Preview).attr('src') === e.target.result) ? e.target.result : e.target.result;
+                        $(Preview).attr('src', e.target.result);
+                    };
+
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
+        }
+    </script>
+
+
 </body>
 </html>

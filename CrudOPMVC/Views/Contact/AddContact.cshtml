@@ -4,7 +4,7 @@
     ViewBag.Title = "AddContact";
 }
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("AddContact", "Contact", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <br />
@@ -18,8 +18,16 @@
 
         <div class="form-group">
             <div class="row">
-                <div class="col-md-8"></div>
+                <div class="col-md-3">
+                    <img src="~/Upload/blank.jpg" id="imagePreview" alt="Show Image" class="rounded-2" style="width:84px;height:84px;">
+
+                    <input type="file" id="Image" name="Image" onchange="return fileValidation()" />
+                </div>
+                <div class="col-md-2"></div>
                 <div class="col-md-offset-2 col-md-3">
+                    <br />
+                    <br />
+                    <br />
                     <input type="submit" value="Save" class="btn btn-outline-success" />
                     @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" })
                 </div>

@@ -62,7 +62,7 @@ namespace CrudOPMVC.Models
         [DisplayName("Company")]
         [Required(ErrorMessage = "Company is mandatory!!")]
         [StringLength(100, MinimumLength = 3, ErrorMessage = "First name character length should be in between 3 to 100.")]
-        [RegularExpression("^[A-Za-z -]*$", ErrorMessage = "Sorry, only letters (a-z) are allowed.")]
+        [RegularExpression("^[a-zA-Z0-9'@&#.\\s]*$", ErrorMessage = "Sorry, only letters (a-z), numbers (0-9), and periods ('@&#.) are allowed.")]
         public string Company { get; set; }
 
         [DisplayName("Category")]
@@ -100,6 +100,8 @@ namespace CrudOPMVC.Models
         [DisplayName("Phone")]
         public bool ModePhone { get; set; }
 
-        public HttpPostedFileBase ContactImage { get; set; }
+        public HttpPostedFileBase Image { get; set; }
+
+        public string ContactImage { get; set; }
     }
 }

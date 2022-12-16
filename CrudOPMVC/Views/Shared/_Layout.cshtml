@@ -25,20 +25,21 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
+        @*<footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
+        </footer>*@
     </div>
 
     <script src="~/Content/jquery.min.js"></script>
     <script src="~/Content/bootstrap.min.js"></script>
+
     <script>
         function fileValidation() {
             const alertMessage = "Invalid file type!! \nOnly files with the following extension are allowed :  jpg jpeg png gif.";
             var baseUrl = document.location.origin;
-            var DefaultImagePath = baseUrl + '/Upload/blank.jpg'; 
+            var DefaultImagePath = baseUrl + '/Upload/blank.jpg';
 
-            var fileInput = document.getElementById('file');
+            var fileInput = document.getElementById('Image');
 
             var filePath = fileInput.value;
 
@@ -49,13 +50,12 @@
             if (!allowedExtensions.exec(filePath)) {
 
                 alert(alertMessage);
-                fileInput.value = '';
+                fileInput.value = null;
                 var DefaultImage = document.getElementById('imagePreview');
                 $(DefaultImage).attr('src', DefaultImagePath);
                 return false;
             }
             else {
-
                 // Image preview
                 if (fileInput.files && fileInput.files[0]) {
                     var reader = new FileReader();
@@ -64,7 +64,7 @@
                         //    'imagePreview').innerHTML =
                         //    '<img src="' + e.target.result
                         //    + '"/>';
-                        
+
                         var Preview = document.getElementById('imagePreview');
                         //var src = ($(Preview).attr('src') === e.target.result) ? e.target.result : e.target.result;
                         $(Preview).attr('src', e.target.result);

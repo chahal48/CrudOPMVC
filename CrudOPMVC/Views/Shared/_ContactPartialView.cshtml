@@ -64,7 +64,7 @@
             @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
         </div>
         <div class="col-md-2"></div>
-        <div class="col-md-5">
+        <div class="col-md-3">
             @Html.Label("Mode of communication :")
             <br />
             @Html.CheckBoxFor(model => model.ModeSlack) &nbsp;
@@ -81,19 +81,3 @@
         </div>
     </div>
 </div>
-<br />
-<div class="form-group">
-    <div class="row">
-        <!-- Image preview -->
-        <div class="rounded-3" style="width:120px;height:120px;">
-            <div id="ImageVisibility">
-                <img src="~/Upload/blank.jpg" id="imagePreview" alt="Show Image" class="rounded-2" style="width:84px;height:84px;">
-            </div>
-        </div>
-        <div class="col-md-5">
-            <input type="file" id="file" onchange="return fileValidation()" />
-        </div>
-
-    </div>
-</div>
-<br />

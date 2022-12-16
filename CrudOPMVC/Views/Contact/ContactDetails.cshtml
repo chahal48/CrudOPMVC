@@ -16,46 +16,54 @@
 
 
         <div class="form-group">
-            <div class="col-xl-10">
-                @Html.Label("Name : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.DisplayFor(model => model.FullName, new { @class = "form-control" })
-                <br />
-                @Html.Label("Email : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.DisplayFor(model => model.emailAddr, new { @class = "form-control" })
-                <br />
-                @Html.Label("Profession : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.DisplayFor(model => model.Profession)
-                <br />
-                @Html.Label("Company : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.DisplayFor(model => model.Company, new { @class = "form-control" })
-                <br />
-                @Html.Label("Category : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.DisplayFor(model => model.Category, "Select Category", new { @class = "form-control" })
-                <br />
-                @Html.Label("Date of Brith : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.DisplayFor(model => model.DOB, new { @class = "form-control text-muted", Type = "Date" })
-                <br />
-                @Html.Label("Gender : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Male, new { @disabled = "disabled" })
-                @Html.Label(CrudOPMVC.Models.Gender.Male.ToString(), new { @class = "control-label" }) &nbsp;
-                @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Female, new { @disabled = "disabled" })
-                @Html.Label(CrudOPMVC.Models.Gender.Female.ToString(), new { @class = "control-label" }) &nbsp;
-                @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Other, new { @disabled = "disabled" })
-                @Html.Label(CrudOPMVC.Models.Gender.Other.ToString(), new { @class = "control-label" })
-                <br />
-                @Html.Label("Mode of communication :", new { @class = "text-danger font-weight-bold" })
-                <br />
-                @Html.CheckBoxFor(model => model.ModeSlack, new { @disabled = "disabled" }) &nbsp;
-                @Html.LabelFor(model => model.ModeSlack, htmlAttributes: new { @class = "control-label" })
-                <br />
-                @Html.CheckBoxFor(model => model.ModeEmail, new { @disabled = "disabled" }) &nbsp;
-                @Html.LabelFor(model => model.ModeEmail, htmlAttributes: new { @class = "control-label" })
-                <br />
-                @Html.CheckBoxFor(model => model.ModePhone, new { @disabled = "disabled" }) &nbsp;
-                @Html.LabelFor(model => model.ModePhone, htmlAttributes: new { @class = "control-label" })
-                <br />
-                @Html.CheckBoxFor(model => model.ModeWhatsapp, new { @disabled = "disabled" }) &nbsp;
-                @Html.LabelFor(model => model.ModeWhatsapp, htmlAttributes: new { @class = "control-label" })
+            <div class="row">
+                @*Contact Details*@
+                <div class="col-md-4">
+                    @Html.Label("Name : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.DisplayFor(model => model.FullName, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Email : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.DisplayFor(model => model.emailAddr, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Profession : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.DisplayFor(model => model.Profession)
+                    <br />
+                    @Html.Label("Company : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.DisplayFor(model => model.Company, new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Category : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.DisplayFor(model => model.Category, "Select Category", new { @class = "form-control" })
+                    <br />
+                    @Html.Label("Date of Brith : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.DisplayFor(model => model.DOB, new { @class = "form-control text-muted", Type = "Date" })
+                    <br />
+                    @Html.Label("Gender : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
+                    @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Male, new { @disabled = "disabled" })
+                    @Html.Label(CrudOPMVC.Models.Gender.Male.ToString(), new { @class = "control-label" }) &nbsp;
+                    @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Female, new { @disabled = "disabled" })
+                    @Html.Label(CrudOPMVC.Models.Gender.Female.ToString(), new { @class = "control-label" }) &nbsp;
+                    @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Other, new { @disabled = "disabled" })
+                    @Html.Label(CrudOPMVC.Models.Gender.Other.ToString(), new { @class = "control-label" })
+                    <br />
+                    @Html.Label("Mode of communication :", new { @class = "text-danger font-weight-bold" })
+                    <br />
+                    @Html.CheckBoxFor(model => model.ModeSlack, new { @disabled = "disabled" }) &nbsp;
+                    @Html.LabelFor(model => model.ModeSlack, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.CheckBoxFor(model => model.ModeEmail, new { @disabled = "disabled" }) &nbsp;
+                    @Html.LabelFor(model => model.ModeEmail, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.CheckBoxFor(model => model.ModePhone, new { @disabled = "disabled" }) &nbsp;
+                    @Html.LabelFor(model => model.ModePhone, htmlAttributes: new { @class = "control-label" })
+                    <br />
+                    @Html.CheckBoxFor(model => model.ModeWhatsapp, new { @disabled = "disabled" }) &nbsp;
+                    @Html.LabelFor(model => model.ModeWhatsapp, htmlAttributes: new { @class = "control-label" })
+                </div>
+                @*Contact Image*@
+                <div class="col-md-4">
+                    <img src="~/Upload/@((Model.ContactImage != null && Model.ContactImage != "") ? Model.ContactImage: "blank.jpg")" id="ShowImage" alt="Show Image" class="rounded-5" 
+                         style="width: 150px; height: 150px; border: 5px solid #00ffff !important; ">
+                </div>
             </div>
         </div>
         <div class="form-group">

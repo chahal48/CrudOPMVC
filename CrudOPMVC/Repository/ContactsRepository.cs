@@ -44,7 +44,8 @@ namespace CrudOPMVC.Repository
                         ModeSlack = Convert.ToBoolean(dr["ModeSlack"]),
                         ModeWhatsapp = Convert.ToBoolean(dr["ModeWhatsapp"]),
                         ModePhone = Convert.ToBoolean(dr["ModePhone"]),
-                        ModeEmail = Convert.ToBoolean(dr["ModeEmail"])
+                        ModeEmail = Convert.ToBoolean(dr["ModeEmail"]),
+                        ContactImage = Convert.ToString(dr["ContactImage"])
                     }
                     );
             }
@@ -66,6 +67,7 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@ModeEmail", obj.ModeEmail);
             com.Parameters.AddWithValue("@ModePhone", obj.ModePhone);
             com.Parameters.AddWithValue("@ModeWhatsapp", obj.ModeWhatsapp);
+            com.Parameters.AddWithValue("@ContactImage", obj.ContactImage);
 
             return Query(com);
         }
@@ -86,6 +88,7 @@ namespace CrudOPMVC.Repository
             com.Parameters.AddWithValue("@ModeEmail", obj.ModeEmail);
             com.Parameters.AddWithValue("@ModePhone", obj.ModePhone);
             com.Parameters.AddWithValue("@ModeWhatsapp", obj.ModeWhatsapp);
+            com.Parameters.AddWithValue("@ContactImage", obj.ContactImage);
 
             return Query(com);
         }

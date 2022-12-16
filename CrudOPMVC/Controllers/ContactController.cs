@@ -2,6 +2,8 @@
 using CrudOPMVC.Repository;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -37,6 +39,18 @@ namespace CrudOPMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    if (contactModel.Image != null)
+                    {
+                        string mapPath = Server.MapPath("/Upload");
+                        Guid guid = Guid.NewGuid();
+                        string fileExtention = Path.GetExtension(contactModel.Image.FileName);
+                        string FullImageName = guid.ToString() + fileExtention;
+                        string fullPath = Path.Combine(mapPath, FullImageName);
+                        contactModel.Image.SaveAs(fullPath);
+
+                        contactModel.ContactImage = FullImageName;
+                    }
+
                     if (contactRepo.AddContact(contactModel))
                     {
                         //ViewBag.Message = "Contact details added successfully";
@@ -68,13 +82,36 @@ namespace CrudOPMVC.Controllers
         // POST: Contact/EditContactDetails/5
         [HttpPost]
 
-        public ActionResult EditContactDetails(int id, ContactModel obj)
+        public ActionResult EditContactDetails(int id, ContactModel contactModel)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    if (contactRepo.UpdateContact(obj))
+                    if (contactModel.Image != null)
+                    {
+                        string mapPath = Server.MapPath("/Upload");
+                        Guid guid = Guid.NewGuid();
+                        string fileExtention = Path.GetExtension(contactModel.Image.FileName);
+                        string FullImageName = guid.ToString() + fileExtention;
+                        string fullPath = Path.Combine(mapPath, FullImageName);
+                        contactModel.Image.SaveAs(fullPath);
+
+                        #region Delete Previous Image
+                        string DeleteFile = contactRepo.GetAllContacts().Find(Contact => Contact.ContactID == id).ContactImage;
+                        string DeleteFilePath = Path.Combine(mapPath, DeleteFile);
+                        FileInfo file = new FileInfo(DeleteFilePath);
+                        if (file.Exists)//check file exsit or not  
+                        {
+                            file.Delete();
+                        }
+                        #endregion
+
+
+                        contactModel.ContactImage = FullImageName;
+                    }
+
+                    if (contactRepo.UpdateContact(contactModel))
                     {
                         //ViewBag.Message = "Contact details added successfully";
                         return RedirectToAction("GetAllContacts", "Contact");

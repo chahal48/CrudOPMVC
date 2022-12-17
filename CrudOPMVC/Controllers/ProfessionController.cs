@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 
 namespace CrudOPMVC.Controllers
@@ -100,6 +101,25 @@ namespace CrudOPMVC.Controllers
             {
                 return View();
             }
+        }
+
+        [HttpPost]
+        public JsonResult IsProfessionAvailable([Bind(Prefix = "Profession")] string Profession, string initialProfession)
+        {
+            if (initialProfession != "")
+            {
+                if (Profession.ToLower() == initialProfession.ToLower())
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            var result = profRepository.GetAllProfessions().FirstOrDefault(a => a.Profession.ToLower() == Profession.ToLower());
+            if (result == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(JsonRequestBehavior.AllowGet);
         }
     }
 }

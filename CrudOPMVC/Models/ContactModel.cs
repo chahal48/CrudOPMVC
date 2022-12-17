@@ -57,6 +57,7 @@ namespace CrudOPMVC.Models
         //[EmailAddress(ErrorMessage = "Sorry, email is invalid.")]
         [StringLength(100, ErrorMessage = "Email character length should be less than 100.")]
         [RegularExpression("^([\\w-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([\\w-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$", ErrorMessage = "Sorry, email is invalid.")]
+        [Remote("IsEmailAvailable", "Contact", HttpMethod = "Post", ErrorMessage = "Email already exist.", AdditionalFields = "initialEmail")]
         public string emailAddr { get; set; }
 
         [DisplayName("Company")]
@@ -107,6 +108,21 @@ namespace CrudOPMVC.Models
         public HttpPostedFileBase Image { get; set; }
 
         public string ContactImage { get; set; }
+
+        public string initialEmail
+        {
+            get
+            {
+                if (emailAddr != null)
+                {
+                    return emailAddr.ToString();
+                }
+                else
+                {
+                    return string.Empty;
+                }
+            }
+        }
     }
 
     public class ValidDateCheckAttribute : ValidationAttribute

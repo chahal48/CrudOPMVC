@@ -36,7 +36,7 @@
       "destination": "lib/jqueryui/",
       "files": [
         "jquery-ui.min.js",
-        "themes/base/jquery-ui.min.css"
+        "themes/smoothness/jquery-ui.min.css"
       ]
     }
   ]

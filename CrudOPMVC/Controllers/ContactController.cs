@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace CrudOPMVC.Controllers
 {
@@ -139,9 +140,9 @@ namespace CrudOPMVC.Controllers
         // GET: Contact/ContactDetails/5
         public ActionResult ContactDetails(int id)
         {
-            ViewBag.itemlist = new SelectList(professionRepo.GetAllProfessions().OrderBy(e => e.Profession), "ProfessionID", "Profession");
             return View(contactRepo.GetAllContacts().Find(Contact => Contact.ContactID == id));
         }
+
         // GET: Contact/DeleteContact/5
         public ActionResult DeleteContact(int id)
         {
@@ -156,6 +157,57 @@ namespace CrudOPMVC.Controllers
             catch
             {
                 return View();
+            }
+        }
+
+        // GET: Contact/NextContact/5
+        public ActionResult NextContact(int id)
+        {
+            try
+            {
+                var Result = contactRepo.GetAllContacts().SkipWhile(Contact => Contact.ContactID != id).Skip(1).FirstOrDefault();
+                
+                if (Result != null)
+                {
+                    return RedirectToAction("ContactDetails", new RouteValueDictionary(new { controller = "Contact", action = "ContactDetails", id = Result.ContactID }));
+                }
+                else
+                {
+                    int FirstRecord = contactRepo.GetAllContacts().First().ContactID;
+                    return RedirectToAction("ContactDetails", new RouteValueDictionary(new { controller = "Contact", action = "ContactDetails", id = FirstRecord }));
+                }
+            }
+            catch
+            {
+                return RedirectToAction("GetAllContacts", "Contact");
+            }
+        }
+        
+        // GET: Contact/PreviousContact/5
+        public ActionResult PreviousContact(int id)
+        {
+            try
+            {
+                var Result = contactRepo.GetAllContacts().OrderByDescending(Contact => Contact.ContactID).SkipWhile(Contact => Contact.ContactID != id).Skip(1).FirstOrDefault();
+
+                if (Result != null)
+                {
+                    return RedirectToAction("ContactDetails", new RouteValueDictionary(new
+                    {
+                        controller = "Contact",
+                        action = "ContactDetails",
+                        id = Result.ContactID
+                    }));
+                }
+                else
+                {
+                    int LastRecord = contactRepo.GetAllContacts().OrderByDescending(Contact => Contact.ContactID).First().ContactID;
+                    return RedirectToAction("ContactDetails", new RouteValueDictionary(new { controller = "Contact", action = "ContactDetails", id = LastRecord }));
+                }
+            }
+            catch
+            {
+                return RedirectToAction("GetAllContacts", "Contact");
             }
         }
     }

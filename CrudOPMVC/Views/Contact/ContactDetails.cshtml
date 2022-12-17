@@ -70,9 +70,13 @@
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-offset-2 col-md-3">
-                    @Html.ActionLink("Edit", "EditContactDetails", new { id = Model.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
-                    @Html.ActionLink("Delete", "DeleteContact", new { id = Model.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
-                    @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" })
+                    @Html.ActionLink("Edit", "EditContactDetails", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
+                    @Html.ActionLink("Delete", "DeleteContact", "Contact", new { id = Model.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
+                    @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" }) &nbsp;
+                </div>
+                <div class="col-md-3">
+                    @Html.ActionLink("Next", "NextContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" }) &nbsp;
+                    @Html.ActionLink("Previous", "PreviousContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
                 </div>
             </div>
         </div>

@@ -21,6 +21,7 @@
             @Html.LabelFor(model => model.emailAddr, htmlAttributes: new { @class = "control-label" })
             @Html.EditorFor(model => model.emailAddr, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.emailAddr, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.initialEmail)
         </div>
         <div class="col-md-5">
             @Html.LabelFor(model => model.ProfessionID, htmlAttributes: new { @class = "control-label" })

@@ -210,5 +210,25 @@ namespace CrudOPMVC.Controllers
                 return RedirectToAction("GetAllContacts", "Contact");
             }
         }
+
+        // Unique field validation
+        [HttpPost]
+        public JsonResult IsEmailAvailable([Bind(Prefix = "emailAddr")] string emailAddr, string initialEmail)
+        {
+            if (initialEmail != "")
+            {
+                if (emailAddr.ToLower() == initialEmail.ToLower())
+                {
+                    return Json(true, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            var result = contactRepo.GetAllContacts().FirstOrDefault(a => a.emailAddr.ToLower() == emailAddr.ToLower());
+            if (result == null)
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json(JsonRequestBehavior.AllowGet);
+        }
     }
 }

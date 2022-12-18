@@ -63,7 +63,8 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-md-2">
-                    @Html.ActionLink("Previous", "PreviousContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
+                    @* Showing Next record on previous button because ContactList is reversed *@
+                    @Html.ActionLink("Previous", "NextContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
                 </div>
                 <div class="col-md-offset-2 col-md-3">
                     @Html.ActionLink("Edit", "EditContactDetails", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
@@ -71,8 +72,8 @@
                     @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" }) &nbsp;
                 </div>
                 <div class="col-md-3">
-                    @Html.ActionLink("Next", "NextContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
-                    
+                    @* Showing previous record on next button because ContactList is reversed *@
+                    @Html.ActionLink("Next", "PreviousContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
                 </div>
             </div>
         </div>

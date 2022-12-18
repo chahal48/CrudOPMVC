@@ -21,7 +21,7 @@ namespace CrudOPMVC.Controllers
         public ActionResult GetAllContacts()
         {
             ModelState.Clear();
-            return View(contactRepo.GetAllContacts());
+            return View(contactRepo.GetAllContacts().OrderByDescending(Contact => Contact.ContactID));
         }
 
         // GET: Contact/AddContact

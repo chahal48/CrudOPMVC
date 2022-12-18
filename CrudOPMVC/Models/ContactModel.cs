@@ -25,7 +25,7 @@ namespace CrudOPMVC.Models
     {
         Male,
         Female,
-        Other 
+        Other
     }
     public class ContactModel
     {
@@ -43,12 +43,12 @@ namespace CrudOPMVC.Models
 
         [DisplayName("First Name")]
         [Required(ErrorMessage = "First name is mandatory!!")]
-        [StringLength(30,MinimumLength =3,ErrorMessage ="First name character length should be in between 3 to 30.")]
+        [StringLength(30, MinimumLength = 3, ErrorMessage = "First name character length should be in between 3 to 30.")]
         [RegularExpression("^[A-Za-z -]*$", ErrorMessage = "Sorry, only letters (a-z) are allowed.")]
         public string fName { get; set; }
 
         [DisplayName("Last Name")]
-        [StringLength(30,ErrorMessage ="Last name character length should be less than 30.")]
+        [StringLength(30, ErrorMessage = "Last name character length should be less than 30.")]
         [RegularExpression("^[A-Za-z -]*$", ErrorMessage = "Sorry, only letters (a-z) are allowed.")]
         public string lName { get; set; }
 
@@ -79,7 +79,7 @@ namespace CrudOPMVC.Models
         {
             get
             {
-               return string.Concat(fName," ", lName);
+                return string.Concat(fName, " ", lName);
             }
         }
 
@@ -89,8 +89,8 @@ namespace CrudOPMVC.Models
 
         [ValidDateCheck(ErrorMessage = "Date should be valid and not null !!")]
         [Required(ErrorMessage = "Date should be valid and not null !!")]
-        [MinimumAge(5,ErrorMessage = "Minimum age requirement is 5 or more.")]
-        [MaximumAge(60,ErrorMessage = "Maximum age requirement is 60 or less.")]
+        [MinimumAge(5, ErrorMessage = "Minimum age requirement is 5 or more.")]
+        [MaximumAge(60, ErrorMessage = "Maximum age requirement is 60 or less.")]
         [DataType(DataType.Date)]
         [DisplayName("Date of Brith")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
@@ -123,58 +123,21 @@ namespace CrudOPMVC.Models
                 }
             }
         }
-    }
 
-    public class ValidDateCheckAttribute : ValidationAttribute
-    {
-        public override bool IsValid(object value)
+        public string Mode
         {
-            DateTime date;
-            if (DateTime.TryParse(Convert.ToString(value), out date))
+            get
             {
-                return true;
+                string result = string.Empty;
+                List<string> ModeList = new List<string>();
+                if (ModeSlack) { ModeList.Add("Slack"); }
+                if (ModeEmail) { ModeList.Add("Email"); }
+                if (ModePhone) { ModeList.Add("Phone"); }
+                if (ModeWhatsapp) { ModeList.Add("Whatsapp"); }
+                if (ModeList.Any()) { result = ModeList.Aggregate((a, b) => a + ", " + b); }
+                
+                return result;
             }
-            return false;
-        }
-    }
-
-    public class MaximumAgeAttribute : ValidationAttribute
-    {
-        int _MaximumAge;
-
-        public MaximumAgeAttribute(int maximumAge)
-        {
-            _MaximumAge = maximumAge * -1;
-        }
-
-        public override bool IsValid(object value)
-        {
-            DateTime date;
-            if (DateTime.TryParse(Convert.ToString(value), out date))
-            {
-                return date > DateTime.Now.AddYears(_MaximumAge);
-            }
-            return false;
-        }
-    }
-
-    public class MinimumAgeAttribute : ValidationAttribute
-    {
-        int _minimumAge;
-
-        public MinimumAgeAttribute(int minimumAge)
-        {
-            _minimumAge = minimumAge * -1;
-        }
-
-        public override bool IsValid(object value)
-        {
-            DateTime date;
-            if (DateTime.TryParse(Convert.ToString(value), out date))
-            {
-                return date < DateTime.Now.AddYears(_minimumAge);
-            }
-            return false;
         }
     }
 }

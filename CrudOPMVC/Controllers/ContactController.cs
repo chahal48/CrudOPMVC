@@ -40,7 +40,7 @@ namespace CrudOPMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (contactModel.Image != null)
+                    if (contactModel.Image != null && contactModel.Image.ContentLength > 0)
                     {
                         string mapPath = Server.MapPath("/Upload");
                         Guid guid = Guid.NewGuid();
@@ -89,7 +89,7 @@ namespace CrudOPMVC.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    if (contactModel.Image != null)
+                    if (contactModel.Image != null && contactModel.Image.ContentLength > 0)
                     {
                         string mapPath = Server.MapPath("/Upload");
                         Guid guid = Guid.NewGuid();
@@ -107,7 +107,6 @@ namespace CrudOPMVC.Controllers
                             file.Delete();
                         }
                         #endregion
-
 
                         contactModel.ContactImage = FullImageName;
                     }

@@ -32,32 +32,18 @@
                     @Html.DisplayFor(model => model.Company, new { @class = "form-control" })
                     <br />
                     @Html.Label("Category : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                    @Html.DisplayFor(model => model.Category, "Select Category", new { @class = "form-control" })
+                    @Html.DisplayFor(model => model.Category, new { @class = "form-control" })
                     <br />
                     @Html.Label("Date of Brith : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
                     @Html.DisplayFor(model => model.DOB, new { @class = "form-control text-muted", Type = "Date" })
                     <br />
                     @Html.Label("Gender : ", new { @class = "text-danger font-weight-bold" }) &nbsp;
-                    @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Male, new { @disabled = "disabled" })
-                    @Html.Label(CrudOPMVC.Models.Gender.Male.ToString(), new { @class = "control-label" }) &nbsp;
-                    @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Female, new { @disabled = "disabled" })
-                    @Html.Label(CrudOPMVC.Models.Gender.Female.ToString(), new { @class = "control-label" }) &nbsp;
-                    @Html.RadioButtonFor(model => model.Gender, CrudOPMVC.Models.Gender.Other, new { @disabled = "disabled" })
-                    @Html.Label(CrudOPMVC.Models.Gender.Other.ToString(), new { @class = "control-label" })
+                    @Html.DisplayFor(model => model.Gender, new { @class = "form-control" })
                     <br />
                     @Html.Label("Mode of communication :", new { @class = "text-danger font-weight-bold" })
-                    <br />
-                    @Html.CheckBoxFor(model => model.ModeSlack, new { @disabled = "disabled" }) &nbsp;
-                    @Html.LabelFor(model => model.ModeSlack, htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.CheckBoxFor(model => model.ModeEmail, new { @disabled = "disabled" }) &nbsp;
-                    @Html.LabelFor(model => model.ModeEmail, htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.CheckBoxFor(model => model.ModePhone, new { @disabled = "disabled" }) &nbsp;
-                    @Html.LabelFor(model => model.ModePhone, htmlAttributes: new { @class = "control-label" })
-                    <br />
-                    @Html.CheckBoxFor(model => model.ModeWhatsapp, new { @disabled = "disabled" }) &nbsp;
-                    @Html.LabelFor(model => model.ModeWhatsapp, htmlAttributes: new { @class = "control-label" })
+                    &nbsp;
+                    @Html.DisplayFor(model => model.Mode, new { @class = "form-control" })
+
                 </div>
                 @*Contact Image*@
                 <div class="col-md-4">
@@ -68,15 +54,17 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Previous", "PreviousContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
+                </div>
                 <div class="col-md-offset-2 col-md-3">
                     @Html.ActionLink("Edit", "EditContactDetails", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-success" }) &nbsp;
                     @Html.ActionLink("Delete", "DeleteContact", "Contact", new { id = Model.ContactID }, new { onclick = "return confirm('Are sure wants to delete?');", @class = "btn btn-outline-danger" })
                     @Html.ActionLink("Show List", "GetAllContacts", "Contact", new { @class = "btn btn-outline-dark" }) &nbsp;
                 </div>
                 <div class="col-md-3">
-                    @Html.ActionLink("Next", "NextContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" }) &nbsp;
-                    @Html.ActionLink("Previous", "PreviousContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
+                    @Html.ActionLink("Next", "NextContact", "Contact", new { id = Model.ContactID }, new { @class = "btn btn-outline-info" })
+                    
                 </div>
             </div>
         </div>

@@ -25,7 +25,7 @@
         </div>
         <div class="col-md-5">
             @Html.LabelFor(model => model.ProfessionID, htmlAttributes: new { @class = "control-label" })
-            @Html.DropDownListFor(model => model.ProfessionID, ViewBag.itemList as SelectList, new { @class = "form-control" })
+            @Html.DropDownListFor(model => model.ProfessionID, ViewBag.itemList as SelectList, new { @class = "form-control form-select" })
             @Html.ValidationMessageFor(model => model.ProfessionID, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="col-md-5">
             @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label" })
-            @Html.EnumDropDownListFor(model => model.Category, "Select Category", new { @class = "form-control" })
+            @Html.EnumDropDownListFor(model => model.Category, "Select Category", new { @class = "form-control form-select" })
             @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
         </div>
     </div>
